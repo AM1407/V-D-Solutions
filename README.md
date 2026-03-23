@@ -135,6 +135,8 @@ This command starts:
 - Log tailing
 - Vite development server
 
+For email testing, a Mailpit Docker service is available via `docker-compose up -d mailpit` (SMTP: 1025, web interface: http://localhost:8025).
+
 ### Available Commands
 - `php artisan serve` - Start Laravel development server
 - `npm run dev` - Start Vite development server
