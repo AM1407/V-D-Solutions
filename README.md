@@ -1,58 +1,255 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# VDSolutions - Renovation Company Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, professional website for a renovation company built with Laravel and Filament. This platform showcases services, manages projects, and provides an intuitive admin panel for content management.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?logo=php)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?logo=tailwind-css)
+![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite)
+![Filament](https://img.shields.io/badge/Filament-5.0-FB70A9?logo=filamentphp)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🏠 Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+VDSolutions is a comprehensive web platform designed for a renovation company to:
+- Showcase renovation services and portfolio projects
+- Provide customer contact and inquiry management
+- Offer an admin dashboard for managing content, media, and analytics
+- Ensure security and performance with modern PHP practices
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Features
 
-## Learning Laravel
+### Frontend
+- Responsive design with Tailwind CSS 4
+- Fast asset compilation using Vite
+- Modern JavaScript with ES modules
+- Custom theme with professional renovation aesthetics
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Backend
+- Laravel 13 with robust MVC architecture
+- Filament 5 admin panel for easy content management
+- Media management with Spatie Media Library
+- Analytics integration for tracking visitor data
+- Honeypot spam protection for forms
+- Database session and cache drivers
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Admin Panel (Filament)
+- Intuitive dashboard for managing website content
+- Media library for uploading and organizing project images
+- User management and role-based access control
+- Form submissions and inquiry management
+- Analytics reports and insights
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🛠 Tech Stack
 
-## Agentic Development
+### Core Framework
+- **Laravel 13** - PHP web application framework
+- **PHP 8.3** - Latest PHP version with performance improvements
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Frontend Tools
+- **Vite** - Next-generation frontend tooling
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Axios** - Promise-based HTTP client
 
+### Admin & CMS
+- **Filament 5** - Beautiful admin panel builder
+- **Spatie Laravel Media Library** - Media management
+- **Spatie Laravel Analytics** - Google Analytics integration
+- **Spatie Laravel Honeypot** - Spam prevention
+
+### Development Tools
+- **Laravel Pint** - PHP code style fixer
+- **PHPUnit** - Testing framework
+- **Concurrently** - Run multiple commands simultaneously
+- **Faker** - Fake data generation
+
+## 📦 Installation
+
+### Prerequisites
+- PHP 8.3 or higher
+- Composer 2.5 or higher
+- Node.js 18+ and npm 10+
+- MySQL 8.0+ or MariaDB
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd vdsolutions
+   ```
+
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Install JavaScript dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Configure environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   
+   Update `.env` with your database credentials and other settings.
+
+5. **Run migrations and seed database**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. **Build frontend assets**
+   ```bash
+   npm run build
+   ```
+
+7. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+8. **Access the application**
+   - Website: http://localhost:8000
+   - Admin Panel: http://localhost:8000/admin (credentials set in database seeders)
+
+### Quick Setup Script
+Run the included setup script for a complete installation:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer run setup
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## 🚀 Development
 
-## Contributing
+### Running the Development Environment
+Start all development services with a single command:
+```bash
+composer run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+This command starts:
+- Laravel development server
+- Queue worker
+- Log tailing
+- Vite development server
 
-## Code of Conduct
+### Available Commands
+- `php artisan serve` - Start Laravel development server
+- `npm run dev` - Start Vite development server
+- `npm run build` - Build for production
+- `php artisan test` - Run PHPUnit tests
+- `php artisan pint` - Fix code style issues
+- `php artisan migrate` - Run database migrations
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🔧 Configuration
 
-## Security Vulnerabilities
+### Environment Variables
+Key environment variables to configure:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+APP_NAME=VDSolutions
+APP_URL=http://localhost:8000
 
-## License
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vdsolutions
+DB_USERNAME=root
+DB_PASSWORD=
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Optional: Google Analytics
+ANALYTICS_PROPERTY_ID=
+
+# Optional: Mail configuration
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+```
+
+### Filament Configuration
+The admin panel is configured in `app/Providers/FilamentServiceProvider.php`. Customize:
+- Panel ID and path
+- Brand name and logo
+- Navigation items
+- Resources and pages
+
+## 📁 Project Structure
+
+```
+vdsolutions/
+├── app/                  # Application core
+│   ├── Filament/         # Filament resources
+│   ├── Models/           # Eloquent models
+│   └── Providers/        # Service providers
+├── config/               # Configuration files
+├── database/             # Migrations and seeders
+├── public/               # Web root
+├── resources/
+│   ├── css/              # Tailwind CSS
+│   ├── js/               # JavaScript files
+│   └── views/            # Blade templates
+├── routes/               # Application routes
+└── tests/                # Test suites
+```
+
+## 🔌 Plugins & Packages
+
+### Primary Packages
+- **filament/filament** (^5.0) - Admin panel framework
+- **filament/spatie-laravel-media-library-plugin** (^5.0) - Media integration
+- **spatie/laravel-analytics** (^5.7) - Google Analytics wrapper
+- **spatie/laravel-honeypot** (^4.7) - Spam protection
+
+### Development Packages
+- **laravel/pint** (^1.27) - PHP code style fixer
+- **nunomaduro/collision** (^8.6) - Error handler
+- **mockery/mockery** (^1.6) - Mocking library
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+composer test
+```
+
+Or use PHPUnit directly:
+```bash
+vendor/bin/phpunit
+```
+
+## 📊 Deployment
+
+### Production Build
+1. Run `npm run build` to compile assets
+2. Set `APP_ENV=production` and `APP_DEBUG=false`
+3. Configure proper database and cache drivers
+4. Set up queue workers for background jobs
+
+### Recommended Hosting
+- **Laravel Forge** - Automated server management
+- **Laravel Vapor** - Serverless deployment
+- **Traditional VPS** with Nginx/PHP-FPM
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and ensure code quality
+5. Submit a pull request
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🏢 About VDSolutions
+
+VDSolutions is a professional renovation company specializing in home and commercial renovations. This website represents our commitment to quality, transparency, and customer satisfaction in every project we undertake.
+
+---
+
+**Built with ❤️ using modern web technologies**
