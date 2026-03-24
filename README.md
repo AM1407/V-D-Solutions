@@ -7,6 +7,7 @@ A modern, professional website for a renovation company built with Laravel and F
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?logo=tailwind-css)
 ![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite)
 ![Filament](https://img.shields.io/badge/Filament-5.0-FB70A9?logo=filamentphp)
+![CI](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions)
 
 ## 🏠 Project Overview
 
@@ -222,6 +223,14 @@ Or use PHPUnit directly:
 ```bash
 vendor/bin/phpunit
 ```
+
+## 🔁 CI/CD
+
+This project uses **GitHub Actions** for CI/CD checks on every push and pull request to `main`.
+
+The workflow is defined in `.github/workflows/ci-cd.yml` and currently runs:
+- Backend checks (Laravel migrations + automated tests)
+- Frontend checks (Node dependency install + production asset build)
 
 ## 📊 Deployment
 
