@@ -229,7 +229,7 @@ vendor/bin/phpunit
 This project uses **GitHub Actions** for CI/CD checks on every push and pull request to `main`.
 
 The workflow is defined in `.github/workflows/ci-cd.yml` and currently runs:
-- Backend checks (Laravel migrations + automated tests)
+- Backend checks (Laravel Pint style check + migrations + automated tests)
 - Frontend checks (Node dependency install + production asset build)
 
 ## 📊 Deployment
