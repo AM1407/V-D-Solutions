@@ -39,11 +39,11 @@ class DatabaseSeeder extends Seeder
 
         // 3. Maak de Diensten aan
         $services = collect(['Loodgieterij', 'Tegelzetten', 'Elektriciteit', 'Gyprocwerken', 'Vloerverwarming'])
-            ->map(fn($name) => Service::create(['title' => $name, 'slug' => Str::slug($name), 'content' => "Professionele $name voor uw woning."]));
+            ->map(fn ($name) => Service::create(['title' => $name, 'slug' => Str::slug($name), 'content' => "Professionele $name voor uw woning."]));
 
         // 4. Maak 10 Test Projecten aan
         for ($i = 1; $i <= 10; $i++) {
-            $title = "Project " . ($i % 2 == 0 ? "Luxe Badkamer " : "Moderne Keuken ") . $i;
+            $title = 'Project '.($i % 2 == 0 ? 'Luxe Badkamer ' : 'Moderne Keuken ').$i;
 
             $project = Project::create([
                 'category_id' => ($i % 2 == 0 ? $badkamers->id : $keukens->id),
