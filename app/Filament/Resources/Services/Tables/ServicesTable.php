@@ -15,11 +15,17 @@ class ServicesTable
         return $table
             ->columns([
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Dienst')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->label('URL slug')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('icon')
-                    ->searchable(),
+                    ->label('Icoon')
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -39,6 +45,7 @@ class ServicesTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('title');
     }
 }

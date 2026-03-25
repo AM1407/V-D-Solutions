@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\Projects\Tables;
 
+use App\Models\Project;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProjectsTable
@@ -14,15 +16,22 @@ class ProjectsTable
     {
         return $table
             ->columns([
-                TextColumn::make('category_id')
-                    ->numeric()
+                TextColumn::make('category.name')
+                    ->label('Categorie')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Titel')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->label('URL slug')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('location')
-                    ->searchable(),
+                    ->label('Locatie')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -33,7 +42,20 @@ class ProjectsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category')
+                    ->label('Categorie')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('location')
+                    ->label('Locatie')
+                    ->options(fn (): array => Project::query()
+                        ->whereNotNull('location')
+                        ->distinct()
+                        ->orderBy('location')
+                        ->pluck('location', 'location')
+                        ->all())
+                    ->searchable(),
             ])
             ->recordActions([
                 EditAction::make(),
@@ -42,6 +64,7 @@ class ProjectsTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('title');
     }
 }

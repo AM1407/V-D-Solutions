@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class ProjectForm
 {
@@ -12,15 +15,25 @@ class ProjectForm
     {
         return $schema
             ->components([
-                TextInput::make('category_id')
+                Select::make('category_id')
+                    ->label('Categorie')
+                    ->relationship('category', 'name')
                     ->required()
-                    ->numeric(),
+                    ->searchable()
+                    ->preload(),
                 TextInput::make('title')
-                    ->required(),
+                    ->label('Titel')
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 TextInput::make('slug')
-                    ->required(),
-                TextInput::make('location'),
+                    ->label('URL slug')
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                TextInput::make('location')
+                    ->label('Locatie'),
                 Textarea::make('description')
+                    ->label('Beschrijving')
                     ->columnSpanFull(),
             ]);
     }
