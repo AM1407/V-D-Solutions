@@ -13,7 +13,7 @@
             </div>
 
             <div class="vd-dashboard-stat-card">
-                <p class="vd-dashboard-stat-label">Totaal categorieen</p>
+                <p class="vd-dashboard-stat-label">Totaal categorieën</p>
                 <p class="vd-dashboard-stat-value">{{ $categoryCount }}</p>
             </div>
 
@@ -33,6 +33,7 @@
                         :href="$action['url']"
                         :tag="$action['url'] ? 'a' : 'button'"
                         :target="$action['newTab'] ? '_blank' : null"
+                        :rel="$action['newTab'] ? 'noopener noreferrer' : null"
                         class="vd-dashboard-action-btn"
                     >
                         {{ $action['label'] }}
