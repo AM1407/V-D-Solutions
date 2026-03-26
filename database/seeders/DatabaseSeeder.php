@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\User;
@@ -32,29 +31,22 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        // 2. Maak de Categorieën aan
-        $badkamers = Category::create(['name' => 'Badkamers', 'slug' => 'badkamers']);
-        $keukens = Category::create(['name' => 'Keukens', 'slug' => 'keukens']);
-        $renovatie = Category::create(['name' => 'Totaalrenovatie', 'slug' => 'totaalrenovatie']);
-
-        // 3. Maak de Diensten aan
+        // 2. Maak de Diensten aan
         $services = collect(['Loodgieterij', 'Tegelzetten', 'Elektriciteit', 'Gyprocwerken', 'Vloerverwarming'])
             ->map(fn ($name) => Service::create(['title' => $name, 'slug' => Str::slug($name), 'content' => "Professionele $name voor uw woning."]));
 
-        // 4. Maak 10 Test Projecten aan
+        // 3. Maak 10 Test Projecten aan
         for ($i = 1; $i <= 10; $i++) {
             $title = 'Project '.($i % 2 == 0 ? 'Luxe Badkamer ' : 'Moderne Keuken ').$i;
+            $service = $services->random();
 
-            $project = Project::create([
-                'category_id' => ($i % 2 == 0 ? $badkamers->id : $keukens->id),
+            Project::create([
+                'service_id' => $service->id,
                 'title' => $title,
                 'slug' => Str::slug($title),
                 'location' => 'Antwerpen',
                 'description' => 'Dit is een prachtig voorbeeld van ons vakmanschap bij VD Solutions.',
             ]);
-
-            // Koppel willekeurige diensten aan het project (Many-to-Many)
-            $project->services()->attach($services->random(rand(1, 3))->pluck('id'));
         }
     }
 }

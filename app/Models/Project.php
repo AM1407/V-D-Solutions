@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-#[Fillable(['category_id', 'title', 'slug', 'location', 'description'])]
-class Project extends Model
+#[Fillable(['service_id', 'title', 'slug', 'location', 'description'])]
+class Project extends Model implements HasMedia
 {
-    public function services()
-    {
-        return $this->belongsToMany(Service::class);
-    }
+    use InteractsWithMedia;
 
-    public function category()
+    public function service()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Service::class);
     }
 }

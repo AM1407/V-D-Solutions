@@ -2,10 +2,8 @@
 
 namespace App\Filament\Widgets;
 
-use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Projects\ProjectResource;
 use App\Filament\Resources\Services\ServiceResource;
-use App\Models\Category;
 use App\Models\Project;
 use App\Models\Service;
 use Filament\Facades\Filament;
@@ -29,18 +27,11 @@ class DashboardOverviewWidget extends Widget
         return [
             'userName' => Filament::auth()->user()?->name,
             'projectCount' => Project::query()->count(),
-            'categoryCount' => Category::query()->count(),
             'serviceCount' => Service::query()->count(),
             'quickActions' => [
                 [
                     'label' => 'Nieuw project',
                     'url' => ProjectResource::getUrl('create'),
-                    'color' => 'primary',
-                    'newTab' => false,
-                ],
-                [
-                    'label' => 'Nieuwe categorie',
-                    'url' => CategoryResource::getUrl('create'),
                     'color' => 'primary',
                     'newTab' => false,
                 ],
