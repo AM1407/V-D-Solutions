@@ -16,8 +16,8 @@ class ProjectsTable
     {
         return $table
             ->columns([
-                TextColumn::make('category.name')
-                    ->label('Categorie')
+                TextColumn::make('service.title')
+                    ->label('Dienst')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('title')
@@ -42,9 +42,9 @@ class ProjectsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('category')
-                    ->label('Categorie')
-                    ->relationship('category', 'name')
+                SelectFilter::make('service')
+                    ->label('Dienst')
+                    ->relationship('service', 'title')
                     ->searchable()
                     ->preload(),
                 SelectFilter::make('location')

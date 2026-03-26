@@ -13,11 +13,6 @@
             </div>
 
             <div class="vd-dashboard-stat-card">
-                <p class="vd-dashboard-stat-label">Totaal categorieën</p>
-                <p class="vd-dashboard-stat-value">{{ $categoryCount }}</p>
-            </div>
-
-            <div class="vd-dashboard-stat-card">
                 <p class="vd-dashboard-stat-label">Totaal diensten</p>
                 <p class="vd-dashboard-stat-value">{{ $serviceCount }}</p>
             </div>

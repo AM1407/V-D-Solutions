@@ -15,9 +15,9 @@ class ProjectForm
     {
         return $schema
             ->components([
-                Select::make('category_id')
-                    ->label('Categorie')
-                    ->relationship('category', 'name')
+                Select::make('service_id')
+                    ->label('Dienst')
+                    ->relationship('service', 'title')
                     ->required()
                     ->searchable()
                     ->preload(),
