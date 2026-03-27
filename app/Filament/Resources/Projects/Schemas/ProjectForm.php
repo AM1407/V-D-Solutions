@@ -41,16 +41,25 @@ class ProjectForm
                     ->label('Afbeeldingen')
                     ->collection('images')
                     ->disk(env('MEDIA_DISK', 'public'))
+                    // Avoid FilePond getting stuck on "Waiting for size" after server-side renaming.
+                    ->fetchFileInformation(false)
                     ->multiple()
                     // Enforce business rule: max 5 photos per project.
                     ->maxFiles(5)
+                    // Clear hard limit so users get an immediate field-level size error.
+                    ->maxSize(12288)
                     ->image()
                     // Resize originals during upload so only optimized source files are stored.
-                    ->automaticallyResizeImagesToWidth('1920')
-                    ->automaticallyResizeImagesToHeight('1920')
+                    ->automaticallyResizeImagesToWidth(1920)
+                    ->automaticallyResizeImagesToHeight(1920)
                     // WebP re-encoding of originals is handled by the media added event listener.
                     ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/webp'])
+                    ->validationMessages([
+                        'max' => 'Afbeelding is te groot (max 12 MB).',
+                        'mimes' => 'Alleen JPG, PNG of WebP zijn toegestaan.',
+                        'image' => 'Bestand moet een geldige afbeelding zijn.',
+                    ]),
             ]);
     }
 }
