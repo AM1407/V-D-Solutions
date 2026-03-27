@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Projects\Schemas;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Set;
@@ -35,6 +36,21 @@ class ProjectForm
                 Textarea::make('description')
                     ->label('Beschrijving')
                     ->columnSpanFull(),
+                // Upload image to Spatie media collection; model handles WebP conversion.
+                SpatieMediaLibraryFileUpload::make('images')
+                    ->label('Afbeeldingen')
+                    ->collection('images')
+                    ->disk(env('MEDIA_DISK', 'public'))
+                    ->multiple()
+                    // Enforce business rule: max 5 photos per project.
+                    ->maxFiles(5)
+                    ->image()
+                    // Resize originals during upload so only optimized source files are stored.
+                    ->automaticallyResizeImagesToWidth('1920')
+                    ->automaticallyResizeImagesToHeight('1920')
+                    // WebP re-encoding of originals is handled by the media added event listener.
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif']),
             ]);
     }
 }

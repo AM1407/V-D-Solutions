@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    // Use public as the default so uploaded media is web-accessible by default.
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------

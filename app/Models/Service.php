@@ -12,6 +12,15 @@ class Service extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    public function registerMediaCollections(): void
+    {
+        // Keep all uploaded service images in one managed collection on cloud/local media disk.
+        $this->addMediaCollection('images')
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'])
+            ->singleFile()
+            ->useDisk(env('MEDIA_DISK', 'public'));
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class);
