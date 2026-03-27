@@ -50,7 +50,7 @@ class ProjectForm
                     ->automaticallyResizeImagesToHeight('1920')
                     // WebP re-encoding of originals is handled by the media added event listener.
                     ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif']),
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
             ]);
     }
 }

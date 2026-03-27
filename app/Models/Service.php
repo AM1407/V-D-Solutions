@@ -16,7 +16,7 @@ class Service extends Model implements HasMedia
     {
         // Keep all uploaded service images in one managed collection on cloud/local media disk.
         $this->addMediaCollection('images')
-            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'])
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp'])
             ->singleFile()
             ->useDisk(env('MEDIA_DISK', 'public'));
     }
