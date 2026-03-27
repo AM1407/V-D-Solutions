@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Enums\Constraint;
 use Spatie\Image\Image;
 use Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAddedEvent;
@@ -52,8 +52,8 @@ class OptimizeMediaOriginalToWebp
             }
 
             $sourceExtension = pathinfo($originalRelativePath, PATHINFO_EXTENSION) ?: 'img';
-            $tempSourcePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('media-src-', true) . '.' . $sourceExtension;
-            $tempWebpPath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('media-webp-', true) . '.webp';
+            $tempSourcePath = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid('media-src-', true).'.'.$sourceExtension;
+            $tempWebpPath = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid('media-webp-', true).'.webp';
 
             if (file_put_contents($tempSourcePath, '') === false || file_put_contents($tempWebpPath, '') === false) {
                 throw new \RuntimeException('Could not allocate temporary files for media optimization.');
@@ -68,8 +68,8 @@ class OptimizeMediaOriginalToWebp
                 ->format('webp')
                 ->save($tempWebpPath);
 
-            $newRelativePath = preg_replace('/\.[^.]+$/', '.webp', $originalRelativePath) ?? ($originalRelativePath . '.webp');
-            $newFileName = pathinfo($media->file_name, PATHINFO_FILENAME) . '.webp';
+            $newRelativePath = preg_replace('/\.[^.]+$/', '.webp', $originalRelativePath) ?? ($originalRelativePath.'.webp');
+            $newFileName = pathinfo($media->file_name, PATHINFO_FILENAME).'.webp';
 
             $optimizedContents = file_get_contents($tempWebpPath);
 
