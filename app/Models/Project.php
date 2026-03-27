@@ -12,6 +12,14 @@ class Project extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    public function registerMediaCollections(): void
+    {
+        // Keep project gallery images in one managed collection on cloud/local media disk.
+        $this->addMediaCollection('images')
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
+            ->useDisk(env('MEDIA_DISK', 'public'));
+    }
+
     public function service()
     {
         return $this->belongsTo(Service::class);
