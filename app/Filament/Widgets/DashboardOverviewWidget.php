@@ -2,11 +2,11 @@
 
 namespace App\Filament\Widgets;
 
-use App\Filament\Resources\Promotions\PromotionResource;
 use App\Filament\Resources\Projects\ProjectResource;
+use App\Filament\Resources\Promotions\PromotionResource;
 use App\Filament\Resources\Services\ServiceResource;
-use App\Models\Promo;
 use App\Models\Project;
+use App\Models\Promo;
 use App\Models\Service;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;

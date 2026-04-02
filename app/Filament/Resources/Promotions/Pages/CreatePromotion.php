@@ -1,5 +1,7 @@
 <?php
-//ensures there is only one active promo at a time when creating or editing a promo in the admin panel
+
+// ensures there is only one active promo at a time when creating or editing a promo in the admin panel
+
 namespace App\Filament\Resources\Promotions\Pages;
 
 use App\Filament\Resources\Promotions\PromotionResource;
